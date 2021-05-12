@@ -1,0 +1,21 @@
+<%= form_with model: @book, local:true do |f| %>
+  <p>
+    <%= f.label :title%>
+    <%= f.text_field :title%>
+  </p>
+  <p>
+    <%= f.label :author_id%>
+    <%= f.collection_select :author_id, @authors, :id, :full_name %>
+  </p>
+  <p>
+    <%= f.label :genres%>
+    <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :cover%>
+    <%= f.file_field :cover%>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

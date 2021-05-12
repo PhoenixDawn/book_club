@@ -1,0 +1,28 @@
+<h1>List Authors</h1>
+<% if user_signed_in?%>
+  <p>
+    <%= link_to 'New Author', new_author_path %>
+  </p>
+<%end%>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Books</th>
+    <% if user_signed_in?%>
+      <th>Actions</th>
+    <%end%>
+  </tr>
+  <% @authors.each do |author|%>
+    <tr>
+      <td><%= link_to author.full_name, author_path(author) %></td>
+      <td>
+        <% author.books.each do |book| %>
+          <p><%= link_to book.title, book_path(book)%></p>
+        <%end%>
+      </td>
+      <% if user_signed_in? %>
+        <td> <%= link_to 'Edit', edit_author_path(author) %> | <%= link_to 'Delete', author_path(author), method: :delete, data: {confirm: "Are you sure?"} %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

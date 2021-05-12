@@ -1,0 +1,21 @@
+<%# <style>
+  body{
+    background: url(<%= url_for(@book.cover) %>)
+}
+</style> %>
+<h1>Book: <%= @book.title%></h1>
+<h3>By: <%= link_to @book.author.full_name, author_path(@book.author) %></h3>
+<p><strong>Genres: </strong><%= @book.genres_to_csv %></p>
+<% if @book.cover.attached? %>
+  <p><%= cl_image_tag @book.cover.key, crop: :scale, width: 150, cloud_name: 'drswkqpxd' %></p>
+<% end %>
+<hr>
+<% if user_signed_in?%>
+  <p>
+    <%= link_to 'Back', :back %>
+    | 
+    <%= link_to 'Edit', edit_book_path(@book) %>
+    | 
+    <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?"} %>
+  </p>
+<%end%>

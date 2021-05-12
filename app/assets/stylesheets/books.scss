@@ -1,0 +1,20 @@
+// Place all the styles related to the books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+table{
+    display: flex;
+
+    tbody{
+        display: flex;
+        width:100%;
+        flex-direction: column;
+        tr{
+            display:flex;
+            justify-content: space-between;
+        }
+        td,th{
+            flex: 1;
+            text-align: left;
+        }
+    }
+}

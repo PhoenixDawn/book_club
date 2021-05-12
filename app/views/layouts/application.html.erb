@@ -4,12 +4,50 @@
     <title>Bookclub</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header>
+      <figure>
+        <img src="http://via.placeholder.com/80" alt="logo">
+        <figcaption>Coder Bookclub</figcaption>
+      </figure>
+      <nav>
+        <span><%= link_to 'Home', root_path %></span>
+        <span><%= link_to 'Books', books_path %></span>
+        <span><%= link_to 'Authors', authors_path %></span>
+        <span><%= link_to 'Genres', genres_path %></span>
+        <span>
+          <% if user_signed_in? %>
+            <%= current_user.email %>
+            |
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+          <%else%>
+            <%= link_to 'Login', new_user_session_path %>
+            |
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          <%end%>
+        </span>
+      </nav>
+    </header>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <% if flash[:errors]%>
+      <section class="errors">
+        <p class="title"> The following error occured: </p>
+        <ul>
+          <% flash[:errors].each do |e|%>
+            <li><%= e %></li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
     <%= yield %>
   </body>
 </html>

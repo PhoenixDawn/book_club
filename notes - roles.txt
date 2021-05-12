@@ -1,0 +1,11 @@
+User roles
+
+bundle add rolify
+
+bundle add pundit
+
+
+Notes Active storage
+
+rails active_storage:install
+bundle add cloudinary activestorage-cloudinary-service
